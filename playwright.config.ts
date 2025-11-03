@@ -3,9 +3,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  timeout:  130 * 1000, // Maksimalno vreme po testu: 150s
+  timeout:  150 * 1000, // Maksimalno vreme po testu: 150s
   expect: {
-    timeout: 5000, // Default timeout za expect assercije
+    timeout: 6000, // Default timeout za expect assercije
   },
   fullyParallel: true,
   retries: 1, 

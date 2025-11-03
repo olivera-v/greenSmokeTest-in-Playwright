@@ -64,8 +64,8 @@ test('navigate Through Pages To Product', async ({ page }) => {
   await homePage.linkZaProizvode.hover();
   await proizvodiPage.greenSunCare2.click();
   await sunCareProductsPage.losionPosleSuncanja.click();
-  const currentURL = page.url();
-  await expect(currentURL).toContain('losion-posle-suncanja/');
+  const currentURL = await page.url();
+  expect(currentURL).toContain('losion-posle-suncanja/');
   });
 
 

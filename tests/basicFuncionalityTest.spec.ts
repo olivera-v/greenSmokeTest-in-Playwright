@@ -31,7 +31,7 @@ test('navigation To About Products', async ({ page }) => {
   const homePage = new HomePage(page);
   await page.goto('https://greenbsn.com/sr/');
   await homePage.setLinkZaOProizvodima();
-  const currentURL = page.url();
+  const currentURL =await page.url();
   expect(currentURL).toContain('o-green-proizvodima/');
 });
 
