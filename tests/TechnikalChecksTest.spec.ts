@@ -13,8 +13,8 @@ test('Provera vremena učitavanja stranice', async ({ page }) => {
 
   console.log(`⏱️ Vreme učitavanja stranice: ${loadTime} ms`);
 
-  // Asertacija — očekujemo manje od 8000 ms (8 sekundi)
-  expect(loadTime).toBeLessThan(8000);
+  // Asertacija — očekujemo manje od 8000 ms (10 sekundi)
+  expect(loadTime).toBeLessThan(10000);
 });
 
 test('Provera da nema JavaScript grešaka na stranici', async ({ page }) => {

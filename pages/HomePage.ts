@@ -77,6 +77,7 @@ export class HomePage extends BasePage {
     }
 
     async setLinkZaOProizvodima () {
+        await this.linkZaOProizvodima.waitFor({ state: 'visible', timeout: 15000 });
         await this.openDropdownAndSelectOption(this.linkZaGreen, this.linkZaOProizvodima);
     }
 
