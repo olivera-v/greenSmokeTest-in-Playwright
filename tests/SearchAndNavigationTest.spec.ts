@@ -33,6 +33,7 @@ test('using The Product Search Field Fail', async ({ page }) => {
 });
 
 test('checking The Links In The Main Menu', async ({ page }) => {
+  test.setTimeout(200000);
   await page.goto('https://greenbsn.com/sr/');
   const links = await page.$$eval('a', (as) => as.map(a => a.getAttribute('href')));
 

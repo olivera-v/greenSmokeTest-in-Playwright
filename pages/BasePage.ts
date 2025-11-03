@@ -44,7 +44,7 @@ export class BasePage {
     await expect(optionLocator).toBeVisible({ timeout: 10000 });
     await optionLocator.click();
     await this.page.waitForLoadState('networkidle');
-}
+  }
   
 async switchToNewlyOpenedTab(page: Page): Promise<Page> {
   const context = page.context();
