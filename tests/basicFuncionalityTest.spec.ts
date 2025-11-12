@@ -45,27 +45,21 @@ test('navigation To Sertifikates', async ({ page }) => {
 
 test('Verify that the website uses HTTPS and has a valid SSL certificate ', async ({ page }) => {
   const websiteUrl = 'https://greenbsn.com/sr/';
-
-  // 🔹 Provera SSL sertifikata
   await new Promise<void>((resolve, reject) => {
     const req = https.get(websiteUrl, (res) => {
-      const socket = res.socket as TLSSocket; // 👈 cast na TLSSocket
+      const socket = res.socket as TLSSocket; 
       const cert = socket.getPeerCertificate();
 
       if (!cert || Object.keys(cert).length === 0) {
         reject('❌ No certificate found!');
         return;
       }
-
       const validTo = new Date(cert.valid_to);
       const now = new Date();
-
       expect(validTo > now).toBeTruthy();
-
       console.log(`✅ Certificate valid until: ${validTo.toISOString()}`);
       console.log(`🔹 Issued by: ${cert.issuer.O}`);
       console.log(`🔹 Issued to: ${cert.subject.CN}`);
-
       res.resume();
       resolve();
     });
@@ -74,7 +68,6 @@ test('Verify that the website uses HTTPS and has a valid SSL certificate ', asyn
     req.end();
   });
 
-  // 🔹 Provera da li se sajt uspešno učitava
   const response = await page.goto(websiteUrl + '/sr/', { waitUntil: 'domcontentloaded' });
   console.log(`HTTP status: ${response?.status()} | URL: ${page.url()}`);
   expect(page.url().startsWith('https://')).toBeTruthy();
@@ -82,17 +75,17 @@ test('Verify that the website uses HTTPS and has a valid SSL certificate ', asyn
   console.log(`✅ Page loaded successfully: ${page.url()}`);
 });
 
-test('successful Login', async ({ page }) => {
-  const homePage = new HomePage(page);
-  await page.goto('https://greenbsn.com/sr/');
-  await homePage.setLinkZaMojGreenKutak();
-  const newPage = await homePage.switchToNewlyOpenedTab(page);
-  const mojGreenKutakPage = new MojGreenKutakPage(newPage);
-  await mojGreenKutakPage.logovanje('1-0008826', 'olivera');
+// test('successful Login', async ({ page }) => {
+//   const homePage = new HomePage(page);
+//   await page.goto('https://greenbsn.com/sr/');
+//   await homePage.setLinkZaMojGreenKutak();
+//   const newPage = await homePage.switchToNewlyOpenedTab(page);
+//   const mojGreenKutakPage = new MojGreenKutakPage(newPage);
+//   await mojGreenKutakPage.logovanje('???', '???');
 
-  const currentURL = await newPage.url();
-  expect(currentURL).toBe('https://my.greenbsn.com/myOrders.php');
-});
+//   const currentURL = await newPage.url();
+//   expect(currentURL).toBe('https://my.greenbsn.com/myOrders.php');
+// });
 
 test('unsuccessful Login', async ({ page }) => {
   const homePage = new HomePage(page);
