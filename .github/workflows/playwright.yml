@@ -1,8 +1,8 @@
 name: Playwright Tests
 
 on:
-  schedule:
-    - cron: "0 5 * * *"  # 6h ujutru po srednjeevropskom vremenu (UTC+1)
+#  schedule:
+#    - cron: "0 5 * * *"  # 6h ujutru po srednjeevropskom vremenu (UTC+1)
   workflow_dispatch:
   push:
     branches: [ main, master ]
